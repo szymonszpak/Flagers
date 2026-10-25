@@ -1,0 +1,44 @@
+[
+  {
+    "id": "poland",
+    "name": "Polska",
+    "continent": "Europa",
+    "firstLetter": "P",
+    "colors": [
+      { "hex": "#FFFFFF", "percentage": 0.5 },
+      { "hex": "#DC143C", "percentage": 0.5 }
+    ]
+  },
+  {
+    "id": "chile",
+    "name": "Chile",
+    "continent": "Ameryka Południowa",
+    "firstLetter": "C",
+    "colors": [
+      { "hex": "#D52B1E", "percentage": 0.5 },
+      { "hex": "#FFFFFF", "percentage": 0.33 },
+      { "hex": "#0039A6", "percentage": 0.17 }
+    ]
+  },
+  {
+    "id": "germany",
+    "name": "Niemcy",
+    "continent": "Europa",
+    "firstLetter": "N",
+    "colors": [
+      { "hex": "#000000", "percentage": 0.333 },
+      { "hex": "#DD0000", "percentage": 0.333 },
+      { "hex": "#FFCC00", "percentage": 0.334 }
+    ]
+  },
+  {
+    "id": "japan",
+    "name": "Japonia",
+    "continent": "Azja",
+    "firstLetter": "J",
+    "colors": [
+      { "hex": "#FFFFFF", "percentage": 0.85 },
+      { "hex": "#BC002D", "percentage": 0.15 }
+    ]
+  }
+]
