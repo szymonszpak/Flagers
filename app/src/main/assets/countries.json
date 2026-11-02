@@ -1,9 +1,11 @@
 [
   {
     "id": "poland",
-    "name": "Polska",
-    "continent": "Europa",
+    "name": "Poland",
+    "continent": "Europe",
     "firstLetter": "P",
+    "area": "312,696 km²",
+    "population": "37.7M",
     "colors": [
       { "hex": "#FFFFFF", "percentage": 0.5 },
       { "hex": "#DC143C", "percentage": 0.5 }
@@ -12,8 +14,10 @@
   {
     "id": "chile",
     "name": "Chile",
-    "continent": "Ameryka Południowa",
+    "continent": "South America",
     "firstLetter": "C",
+    "area": "756,102 km²",
+    "population": "19.5M",
     "colors": [
       { "hex": "#D52B1E", "percentage": 0.5 },
       { "hex": "#FFFFFF", "percentage": 0.33 },
@@ -22,9 +26,11 @@
   },
   {
     "id": "germany",
-    "name": "Niemcy",
-    "continent": "Europa",
-    "firstLetter": "N",
+    "name": "Germany",
+    "continent": "Europe",
+    "firstLetter": "G",
+    "area": "357,022 km²",
+    "population": "84.3M",
     "colors": [
       { "hex": "#000000", "percentage": 0.333 },
       { "hex": "#DD0000", "percentage": 0.333 },
@@ -33,12 +39,103 @@
   },
   {
     "id": "japan",
-    "name": "Japonia",
-    "continent": "Azja",
+    "name": "Japan",
+    "continent": "Asia",
     "firstLetter": "J",
+    "area": "377,975 km²",
+    "population": "125.1M",
     "colors": [
       { "hex": "#FFFFFF", "percentage": 0.85 },
       { "hex": "#BC002D", "percentage": 0.15 }
+    ]
+  },
+  {
+    "id": "france",
+    "name": "France",
+    "continent": "Europe",
+    "firstLetter": "F",
+    "area": "551,695 km²",
+    "population": "68.1M",
+    "colors": [
+      { "hex": "#002395", "percentage": 0.333 },
+      { "hex": "#FFFFFF", "percentage": 0.333 },
+      { "hex": "#ED2939", "percentage": 0.334 }
+    ]
+  },
+  {
+    "id": "italy",
+    "name": "Italy",
+    "continent": "Europe",
+    "firstLetter": "I",
+    "area": "301,340 km²",
+    "population": "58.8M",
+    "colors": [
+      { "hex": "#009246", "percentage": 0.333 },
+      { "hex": "#FFFFFF", "percentage": 0.333 },
+      { "hex": "#CE2B37", "percentage": 0.334 }
+    ]
+  },
+  {
+    "id": "brazil",
+    "name": "Brazil",
+    "continent": "South America",
+    "firstLetter": "B",
+    "area": "8,515,767 km²",
+    "population": "215.3M",
+    "colors": [
+      { "hex": "#009C3B", "percentage": 0.70 },
+      { "hex": "#FFDF00", "percentage": 0.20 },
+      { "hex": "#002776", "percentage": 0.10 }
+    ]
+  },
+  {
+    "id": "canada",
+    "name": "Canada",
+    "continent": "North America",
+    "firstLetter": "C",
+    "area": "9,984,670 km²",
+    "population": "38.9M",
+    "colors": [
+      { "hex": "#FF0000", "percentage": 0.50 },
+      { "hex": "#FFFFFF", "percentage": 0.50 }
+    ]
+  },
+  {
+    "id": "finland",
+    "name": "Finland",
+    "continent": "Europe",
+    "firstLetter": "F",
+    "area": "338,145 km²",
+    "population": "5.5M",
+    "colors": [
+      { "hex": "#FFFFFF", "percentage": 0.70 },
+      { "hex": "#003580", "percentage": 0.30 }
+    ]
+  },
+  {
+    "id": "argentina",
+    "name": "Argentina",
+    "continent": "South America",
+    "firstLetter": "A",
+    "area": "2,780,400 km²",
+    "population": "45.8M",
+    "colors": [
+      { "hex": "#74ACDF", "percentage": 0.60 },
+      { "hex": "#FFFFFF", "percentage": 0.35 },
+      { "hex": "#F6B40E", "percentage": 0.05 }
+    ]
+  },
+  {
+    "id": "egypt",
+    "name": "Egypt",
+    "continent": "Africa",
+    "firstLetter": "E",
+    "area": "1,002,450 km²",
+    "population": "109.3M",
+    "colors": [
+      { "hex": "#CE1126", "percentage": 0.333 },
+      { "hex": "#FFFFFF", "percentage": 0.333 },
+      { "hex": "#000000", "percentage": 0.334 }
     ]
   }
 ]
