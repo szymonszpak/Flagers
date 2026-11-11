@@ -4,13 +4,15 @@ import com.example.flagers.data.Country
 
 enum class GameMode {
     CLASSIC,
-    RUSH
+    RUSH,
+    DAILY
 }
 
 enum class GameStatus {
     IN_PROGRESS,
     WON,
-    LOST
+    LOST,
+    ALREADY_PLAYED
 }
 
 data class GameState(

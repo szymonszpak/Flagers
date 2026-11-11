@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.flagers.data.FlagColor
@@ -20,9 +21,11 @@ fun PieChartCanvas(
         var startAngle = -90f
 
         colors.forEach { flagColor ->
-            val sweepAngle = flagColor.percentage * 360f
+            val normalizedPercentage = if (flagColor.percentage > 1f) flagColor.percentage / 100f else flagColor.percentage
+            val sweepAngle = normalizedPercentage * 360f
             val parseColor = try {
-                Color(flagColor.hex.toColorInt())
+                val hexString = if (flagColor.hex.startsWith("#")) flagColor.hex else "#${flagColor.hex}"
+                Color(hexString.toColorInt())
             } catch (e: Exception) {
                 Color.Gray
             }
@@ -35,5 +38,10 @@ fun PieChartCanvas(
             )
             startAngle += sweepAngle
         }
+
+        drawCircle(
+            color = Color.Black,
+            style = Stroke(width = 4f)
+        )
     }
 }

@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -16,12 +18,13 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(
-    onStartGameClick: () -> Unit
+    onStartGameClick: () -> Unit,
+    onLeaderboardClick: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -33,10 +36,27 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(32.dp))
 
         Button(
-            onClick = onStartGameClick
+            onClick = onStartGameClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
         ) {
             Text(
                 text = "Play",
+                style = MaterialTheme.typography.titleMedium
+            )
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedButton(
+            onClick = onLeaderboardClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+        ) {
+            Text(
+                text = "Leaderboard",
                 style = MaterialTheme.typography.titleMedium
             )
         }

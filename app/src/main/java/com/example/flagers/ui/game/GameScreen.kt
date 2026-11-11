@@ -19,9 +19,11 @@ import com.example.flagers.ui.components.PieChartCanvas
 fun GameScreen(
     gameMode: GameMode = GameMode.CLASSIC,
     onBackClick: () -> Unit,
+    onLeaderboardClick: () -> Unit = {},
     viewModel: GameViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val isLoading by viewModel.isLoading.collectAsState()
 
     LaunchedEffect(gameMode) {
         viewModel.startNewGame(gameMode)
@@ -52,11 +54,22 @@ fun GameScreen(
 
         Spacer(modifier = Modifier.height(12.dp))
 
-        uiState.currentCountry?.let { country ->
-            PieChartCanvas(
-                colors = country.colors,
-                size = 170.dp
-            )
+        if (isLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(170.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        } else {
+            uiState.currentCountry?.let { country ->
+                PieChartCanvas(
+                    colors = country.colors,
+                    size = 170.dp
+                )
+            }
         }
 
         if (uiState.gameMode == GameMode.RUSH) {
@@ -135,13 +148,24 @@ fun GameScreen(
                 ) {
                     Text("Menu")
                 }
-                Button(
-                    onClick = { viewModel.startNewGame(gameMode) },
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(50.dp)
-                ) {
-                    Text("Play again")
+                if (uiState.gameMode == GameMode.DAILY) {
+                    Button(
+                        onClick = onLeaderboardClick,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(50.dp)
+                    ) {
+                        Text("Leaderboard")
+                    }
+                } else {
+                    Button(
+                        onClick = { viewModel.startNewGame(gameMode) },
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(50.dp)
+                    ) {
+                        Text("Play again")
+                    }
                 }
             }
         }
