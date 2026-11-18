@@ -1,5 +1,6 @@
 package com.example.flagers
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,19 +12,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.example.flagers.data.UserRepository
 import com.example.flagers.ui.game.GameMode
-import com.example.flagers.ui.game.GameScreen
 import com.example.flagers.ui.home.HomeScreen
-import com.example.flagers.ui.leaderboard.LeaderboardScreen
 import com.example.flagers.ui.mode.ModeSelectionScreen
 import com.example.flagers.ui.theme.FlagersTheme
 
-enum class Screen {
+enum class MainNavScreen {
     HOME,
-    MODE_SELECTION,
-    GAME_CLASSIC,
-    GAME_RUSH,
-    GAME_DAILY,
-    LEADERBOARD
+    MODE_SELECTION
 }
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    var currentScreen by rememberSaveable { mutableStateOf(Screen.HOME) }
+                    var currentScreen by rememberSaveable { mutableStateOf(MainNavScreen.HOME) }
                     var showNicknameDialog by remember { 
                         mutableStateOf(userRepository.getNickname(this@MainActivity).isEmpty()) 
                     }
@@ -75,35 +70,31 @@ class MainActivity : ComponentActivity() {
                     }
 
                     when (currentScreen) {
-                        Screen.HOME -> HomeScreen(
-                            onStartGameClick = { currentScreen = Screen.MODE_SELECTION },
-                            onLeaderboardClick = { currentScreen = Screen.LEADERBOARD }
+                        MainNavScreen.HOME -> HomeScreen(
+                            onStartGameClick = { currentScreen = MainNavScreen.MODE_SELECTION },
+                            onLeaderboardClick = { launchLeaderboardActivity() }
                         )
-                        Screen.MODE_SELECTION -> ModeSelectionScreen(
-                            onClassicClick = { currentScreen = Screen.GAME_CLASSIC },
-                            onRushClick = { currentScreen = Screen.GAME_RUSH },
-                            onDailyClick = { currentScreen = Screen.GAME_DAILY },
-                            onBackClick = { currentScreen = Screen.HOME }
-                        )
-                        Screen.GAME_CLASSIC -> GameScreen(
-                            gameMode = GameMode.CLASSIC,
-                            onBackClick = { currentScreen = Screen.MODE_SELECTION }
-                        )
-                        Screen.GAME_RUSH -> GameScreen(
-                            gameMode = GameMode.RUSH,
-                            onBackClick = { currentScreen = Screen.MODE_SELECTION }
-                        )
-                        Screen.GAME_DAILY -> GameScreen(
-                            gameMode = GameMode.DAILY,
-                            onBackClick = { currentScreen = Screen.MODE_SELECTION },
-                            onLeaderboardClick = { currentScreen = Screen.LEADERBOARD }
-                        )
-                        Screen.LEADERBOARD -> LeaderboardScreen(
-                            onBackClick = { currentScreen = Screen.HOME }
+                        MainNavScreen.MODE_SELECTION -> ModeSelectionScreen(
+                            onClassicClick = { launchGameActivity(GameMode.CLASSIC) },
+                            onRushClick = { launchGameActivity(GameMode.RUSH) },
+                            onDailyClick = { launchGameActivity(GameMode.DAILY) },
+                            onBackClick = { currentScreen = MainNavScreen.HOME }
                         )
                     }
                 }
             }
         }
+    }
+
+    private fun launchGameActivity(mode: GameMode) {
+        val intent = Intent(this, GameActivity::class.java).apply {
+            putExtra(GameActivity.EXTRA_GAME_MODE, mode.name)
+        }
+        startActivity(intent)
+    }
+
+    private fun launchLeaderboardActivity() {
+        val intent = Intent(this, LeaderboardActivity::class.java)
+        startActivity(intent)
     }
 }
