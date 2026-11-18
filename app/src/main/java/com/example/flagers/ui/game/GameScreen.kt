@@ -10,6 +10,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.flagers.ui.components.OnScreenKeyboard
@@ -45,10 +46,21 @@ fun GameScreen(
             }
 
             if (uiState.gameMode == GameMode.RUSH) {
-                Text(
-                    text = "Score: ${uiState.score}",
-                    style = MaterialTheme.typography.titleLarge
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Text(
+                        text = "⚡ ${uiState.streak}",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Text(
+                        text = "Score: ${uiState.score}",
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
             }
         }
 

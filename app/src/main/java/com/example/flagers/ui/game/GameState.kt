@@ -24,5 +24,6 @@ data class GameState(
     val gameStatus: GameStatus = GameStatus.IN_PROGRESS,
     val message: String = "",
     val timeLeft: Int = 60,
-    val score: Int = 0
+    val score: Int = 0,
+    val streak: Int = 0
 )

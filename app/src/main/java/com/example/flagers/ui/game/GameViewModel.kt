@@ -68,7 +68,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                     gameStatus = GameStatus.IN_PROGRESS,
                     message = "",
                     timeLeft = 60,
-                    score = 0
+                    score = 0,
+                    streak = 0
                 )
                 startTimer()
             } else {
@@ -81,7 +82,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                     gameStatus = GameStatus.IN_PROGRESS,
                     message = "",
                     timeLeft = 0,
-                    score = 0
+                    score = 0,
+                    streak = 0
                 )
             }
             _isLoading.value = false
@@ -114,22 +116,22 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun formatArea(areaStr: String): String {
         val area = areaStr.replace(Regex("[^0-9]"), "").toLongOrNull() ?: return areaStr
-        return "%,d".format(java.util.Locale.US, area).replace(',', ' ') + " km²"
+        return "%,d".format(Locale.US, area).replace(',', ' ') + " km²"
     }
 
     private fun formatPopulation(popStr: String): String {
         val pop = popStr.replace(Regex("[^0-9]"), "").toLongOrNull() ?: return popStr
         return when {
             pop >= 1_000_000_000 -> {
-                val formatted = String.format(java.util.Locale.US, "%.2f", pop / 1_000_000_000.0)
+                val formatted = String.format(Locale.US, "%.2f", pop / 1_000_000_000.0)
                 "${formatted.removeSuffix(".00")} B"
             }
             pop >= 1_000_000 -> {
-                val formatted = String.format(java.util.Locale.US, "%.1f", pop / 1_000_000.0)
+                val formatted = String.format(Locale.US, "%.1f", pop / 1_000_000.0)
                 "${formatted.removeSuffix(".0")} M"
             }
             pop >= 1_000 -> {
-                val formatted = String.format(java.util.Locale.US, "%.1f", pop / 1_000.0)
+                val formatted = String.format(Locale.US, "%.1f", pop / 1_000.0)
                 "${formatted.removeSuffix(".0")} K."
             }
             else -> pop.toString()
@@ -189,12 +191,14 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         val currentState = _uiState.value
         if (userGuess.equals(targetCountry.name, ignoreCase = true)) {
             val newScore = currentState.score + 1
+            val newStreak = currentState.streak + 1
             val newTime = currentState.timeLeft + 5
             _uiState.update {
                 it.copy(
                     score = newScore,
+                    streak = newStreak,
                     timeLeft = newTime,
-                    message = "Correct! +5s"
+                    message = "Correct! +5s (Streak: $newStreak⚡)"
                 )
             }
             startNextRushCountry()
@@ -213,8 +217,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
                 _uiState.update {
                     it.copy(
                         timeLeft = newTime,
+                        streak = 0,
                         currentGuess = "",
-                        message = "Wrong guess! -5s"
+                        message = "Wrong guess! -5s (Streak reset)"
                     )
                 }
             }
